@@ -17,8 +17,6 @@
 <div class="container">
 <h1> Login</h1>
 
-<c:out value="${'bem vindo'}"></c:out>
-
 <form action="LoginServlet" method="post">
 
 	<input type="text" id="login" name="login">
