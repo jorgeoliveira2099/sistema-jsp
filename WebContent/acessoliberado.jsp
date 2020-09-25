@@ -11,7 +11,7 @@
 <div class="container">
 <h1>Bem vindo</h1>
 
-<a href="cadastroUsuario.jsp">Cadastrar Funcionario</a>
+<a href="salvarUsuario?acao=listartodos">Cadastrar Funcionario</a>
 
 </div>
 </body>

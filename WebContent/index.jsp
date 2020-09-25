@@ -15,11 +15,16 @@
 
 <form action="LoginServlet" method="post">
 
-	<input type="text" id="login" name="login">
+	<label>Login:</label>
+	<i class="material-icons person">person</i>
+	<input type="text" id="login" name="login" placeholder="Login">
+	<label>Senha:</label>
+	<i class="material-icons https">https</i>
+	<input type="text" id="senha" name="senha" placeholder="Senha">
 	
-	<input type="text" id="senha" name="senha">
 	
-	<input type="submit"  value="Entrar"/>
+	<a class="waves-effect waves-light btn"><input type="submit"  value="Entrar"/></a>
+	
 </form>
 
 

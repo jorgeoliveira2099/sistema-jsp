@@ -45,6 +45,12 @@ public class Usuario extends HttpServlet {
 			
 			request.setAttribute("user", beanCursoJsp);
 			view.forward(request, response);
+		}else if(acao.equalsIgnoreCase("listartodos")) {
+			
+			RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+			
+			request.setAttribute("usuarios", daoUsuario.listar());
+			view.forward(request, response);
 		}
 		
 		}catch(Exception e) {
@@ -56,14 +62,29 @@ public class Usuario extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String acao = request.getParameter("acao");
+		
+		if(acao != null && acao.equalsIgnoreCase("reset")){
+			try {
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else {
+		
 		String id = request.getParameter("id");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
+		String nome = request.getParameter("nome");
 		
 		BeanCursoJsp usuario = new BeanCursoJsp();
 		usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
 		usuario.setLogin(login);
-		usuario.setSenha(senha);			
+		usuario.setSenha(senha);
+		usuario.setNome(nome);
 		
 		if(id == null || id.isEmpty()) {
 			daoUsuario.salvar(usuario);	
@@ -71,6 +92,7 @@ public class Usuario extends HttpServlet {
 			daoUsuario.atualizar(usuario);
 		}
 		
+		//esse bloco do try, é responsavel apenas por fazer o redirecionamento, da lista de todsos os usuarios
 		try {
 			RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 			request.setAttribute("usuarios", daoUsuario.listar());
@@ -78,6 +100,7 @@ public class Usuario extends HttpServlet {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			}
 		}
 	}
 
