@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class SingleConnection {
 
-	private static String url = "jdbc:mysql://localhost:3306/sistemajsp?useTimezone=true&serverTimezone=UTC";
+	private static String url = "jdbc:mysql://localhost:3306/sistemajsp?autoReconnect=true&useTimezone=true&serverTimezone=UTC";
 	private static String user = "root";
 	private static String password = "root";
 	

@@ -12,6 +12,8 @@
 <div class="container">
 <h1>Novo Funcionario</h1>
 
+<h3>${msg}</h3>
+
 <form action="salvarUsuario" method="post" id="formUser">
 
 			Código:			
@@ -25,7 +27,9 @@
 		
 			Senha:		
 			<input type="password" id="senha" name="senha" value="${user.senha}" />
-		
+			
+			Telefone:		
+			<input type="text" id="telefone" name="telefone" value="${user.telefone}" />
 		
 		
 		<a class="waves-effect waves-light btn"><input type="submit" value="Salvar" /></a>
@@ -39,6 +43,7 @@
           <tr>
          	 <th>id</th>
          	 <th>Nome</th>
+         	  <th>Telefone</th>
               <th>Login</th>              
               <th>Ação</th>               
           </tr>
@@ -50,9 +55,11 @@
           <tr>
            	<td><c:out value="${user.id}"></c:out> </td>
            	<td><c:out value="${user.nome}"></c:out> </td>
+           	<td><c:out value="${user.telefone}"></c:out> </td>
            	<td><c:out value="${user.login}"></c:out> </td>					
-			<td><a href="salvarUsuario?acao=delete&user=${user.id}"><i class="material-icons delete">delete</i></a></td>
-			<td><a href="salvarUsuario?acao=editar&user=${user.id}"><i class="material-icons edit">edit</i></a></td>
+			<td><a href="salvarUsuario?acao=delete&user=${user.id}"><i class="material-icons delete">delete</i></a>
+			<a href="salvarUsuario?acao=editar&user=${user.id}"><i class="material-icons edit">edit</i></a>
+			</td>
           
           </tr>
           </c:forEach>

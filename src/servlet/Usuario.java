@@ -78,21 +78,44 @@ public class Usuario extends HttpServlet {
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
 			String nome = request.getParameter("nome");
-
+			String telefone = request.getParameter("telefone");
+			
 			BeanCursoJsp usuario = new BeanCursoJsp();
 			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setNome(nome);
-
+			usuario.setTelefone(telefone);
+			
 			try {
-
+				
+				//se o validar retornar false, o usuario ja existe
+				if (id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {
+					request.setAttribute("msg", "Usuário já existe com o mesmo login");
+					request.setAttribute("user", usuario);
+					
+				}else if(id == null || id.isEmpty() && !daoUsuario.validarSenha(senha)) {
+					request.setAttribute("msg", "Usuário já existe com a mesma senha");
+					//isso mantém os dados em tela quando o login for invalido
+					request.setAttribute("user", usuario);
+				}
+				
+				//se o validar retornar true, o uisuario não existe, e pode ser cadastrado
 				if (id == null || id.isEmpty() && daoUsuario.validarLogin(login)) {
 					
 					daoUsuario.salvar(usuario);
-					System.out.println("entrou aqui ? wtf");
+					request.setAttribute("msg", "Usuário Cadastrado!");
+					
 				} else if (id != null && !id.isEmpty()) {
+					
+					//se retornar false, mostra a mensagem de erro
+					if(!daoUsuario.validarLoginUpdate(login, id)) {
+						request.setAttribute("msg", "Login já existe para outro usuário");
+						request.setAttribute("user", usuario);
+					}else {
 					daoUsuario.atualizar(usuario);
+					request.setAttribute("msg", "Usuário Atualizado!");
+					}
 				}
 
 				// esse bloco do try, é responsavel apenas por fazer o redirecionamento, da
