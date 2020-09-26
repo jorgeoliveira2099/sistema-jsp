@@ -123,6 +123,7 @@ public class DaoUsuario {
 	return false;
 	
 }
+	
 	public boolean validarLoginUpdate(String login, String id) throws Exception {
 		
 		String sql = "SELECT count(1) as qtd FROM usuario WHERE login ='" + login +"' and id <> "+ id;

@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,7 +31,7 @@ public class Usuario extends HttpServlet {
 		try {
 			String acao = request.getParameter("acao");
 			String user = request.getParameter("user");
-
+System.out.println(user);
 			if (acao.equalsIgnoreCase("delete")) {
 				daoUsuario.delete(user);
 				// quando deletar, recarregar para a mesma página
@@ -44,6 +46,7 @@ public class Usuario extends HttpServlet {
 
 				request.setAttribute("user", beanCursoJsp);
 				view.forward(request, response);
+				
 			} else if (acao.equalsIgnoreCase("listartodos")) {
 
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
@@ -51,6 +54,11 @@ public class Usuario extends HttpServlet {
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 			}
+			//parte do metodo para gerar relatorio
+			//else if(acao.equalsIgnoreCase("exportar")) {
+				//DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");
+				//String nomeFile = dateFormat.format(new Date());				
+			//}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,7 +89,7 @@ public class Usuario extends HttpServlet {
 			String telefone = request.getParameter("telefone");
 			
 			BeanCursoJsp usuario = new BeanCursoJsp();
-			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
+			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : null);
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setNome(nome);

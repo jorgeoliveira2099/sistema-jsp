@@ -10,6 +10,14 @@
 <body>
 <%@ include file="header.jsp"  %>
 <div class="container">
+<br>
+	<div class="form-group">
+	<!-- <form action="salvarUsuario?acao=exportar"> -->
+		<form action="#">
+			<button type="submit" name="accion" value="ExportarPdf" class="btn btn-small"><i class="material-icons file_download">file_download</i>Gerar PDF</button>
+		</form>
+	</div>
+	
 <h1>Novo Funcionario</h1>
 
 <h3>${msg}</h3>
@@ -30,7 +38,8 @@
 			
 			Telefone:		
 			<input type="text" id="telefone" name="telefone" value="${user.telefone}" />
-		
+				
+			
 		
 		<a class="waves-effect waves-light btn"><input type="submit" value="Salvar" /></a>
 		<a class="waves-effect waves-light btn"><input type="submit" value="Cancelar" onclick="document.getElementById('formUser').action='salvarUsuario?acao=reset'" /></a>
