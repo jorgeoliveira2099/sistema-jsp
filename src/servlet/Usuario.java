@@ -95,6 +95,60 @@ System.out.println(user);
 			usuario.setNome(nome);
 			usuario.setTelefone(telefone);
 			
+			
+				if(nome == null || nome.isEmpty()) {
+					request.setAttribute("msg", "Nome é obrigatório");
+					request.setAttribute("user", usuario);
+					
+					RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+					try {
+						request.setAttribute("usuarios", daoUsuario.listar());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					view.forward(request, response);
+			}
+			else if(login == null || login.isEmpty()) {
+				request.setAttribute("msg", "Login é obrigatório");
+				request.setAttribute("user", usuario);
+				
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				try {
+					request.setAttribute("usuarios", daoUsuario.listar());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				view.forward(request, response);
+			}else if(senha == null || senha.isEmpty()) {
+				request.setAttribute("msg", "Senha é obrigatório");
+				request.setAttribute("user", usuario);
+				
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				try {
+					request.setAttribute("usuarios", daoUsuario.listar());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				view.forward(request, response);
+				
+			}else if(telefone == null || telefone.isEmpty()){
+				request.setAttribute("msg", "Telefone é obrigatório");
+				request.setAttribute("user", usuario);
+				
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				try {
+					request.setAttribute("usuarios", daoUsuario.listar());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				view.forward(request, response);
+				
+			}else {
+				
 			try {
 				
 				//se o validar retornar false, o usuario ja existe
@@ -137,6 +191,10 @@ System.out.println(user);
 				e.printStackTrace();
 			}
 		}
+		
+		//fechamento do else da linha 101
+		}
+		
 	}
 
 }
