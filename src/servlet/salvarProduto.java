@@ -105,8 +105,25 @@ public class salvarProduto extends HttpServlet {
 			produto.setValor(valor);
 			produto.setQuantidade(quantidade);		
 			
-			
-			
+			if(nome == null || nome.isEmpty())  {
+				request.setAttribute("msg", "O nome do produto é obrigatório!");
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
+				request.setAttribute("produto", produto);
+				view.forward(request, response);
+			}	
+			else if(valor == null || valor.isEmpty())  {
+				request.setAttribute("msg", "O valor do produto é obrigatório!");
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
+				request.setAttribute("produto", produto);
+				view.forward(request, response);
+			}			
+			else if(quantidade == null || quantidade.isEmpty()) {
+				request.setAttribute("msg", "A quantidade do produto é obrigatório!");
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
+				request.setAttribute("produto", produto);
+				view.forward(request, response);
+				
+			}else {
 			//se o validar retornar true, o uisuario não existe, e pode ser cadastrado
 			try {
 				if (id == null || id.isEmpty() && !daoProduto.validarNomeProduto(nome)) {
@@ -155,6 +172,8 @@ public class salvarProduto extends HttpServlet {
 			//em baixo, fim do else
 		}
 		//em cima, fim do else
+		
+	}
 		
 	}
 
