@@ -12,6 +12,15 @@
 <div class="container">
 <br>
 
+ <nav>
+    <div class="nav-wrapper teal darken-3">
+      <div class="col s12">
+        <a href="acessoliberado.jsp" class="breadcrumb">Inicío</a>
+        <a href="#" class="breadcrumb">Cadastrar Produto</a>       
+      </div>
+    </div>
+  </nav>
+  <br>
 	<div class="form-group">
 	<!-- <form action="salvarUsuario?acao=exportar"> -->
 		<form action="#">
@@ -22,7 +31,7 @@
 <h1>Novo Produto</h1>
 
 
-<form action="salvarProduto" method="post" id="formProduto">
+<form action="salvarProduto" method="post" id="formProduto" onSubmit="return validarCampos() ? true : false;">
 
 			Código:			
 			<input type="text" readonly="readonly" id="id" name="id" value="${produto.id}" />
@@ -51,7 +60,8 @@
          	 <th>id</th>
          	 <th>Nome</th>
          	  <th>Valor</th>
-              <th>Quantidade</th>              
+              <th>Quantidade</th> 
+              <th>Ação</th>              
                           
           </tr>
         </thead>
@@ -76,5 +86,23 @@
       </table>
 
 </div>
+<script type="text/javascript">
+	function validarCampos(){
+		if(document.getElementById("nome").value == '' ){
+			alert('Informe o nome!');
+			return false;
+		}
+		else if(document.getElementById("valor").value == '' ){
+			alert('Informe o valor!');
+			return false;
+		}
+		else if(document.getElementById("quantidade").value == '' ){
+			alert('Informe a quantidade!');
+			return false;
+		}
+		
+		return true;
+	}
+</script>
 </body>
 </html>

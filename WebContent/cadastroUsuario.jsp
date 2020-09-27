@@ -9,7 +9,18 @@
 </head>
 <body>
 <%@ include file="header.jsp"  %>
-<div class="container">
+
+ <div class="container">
+ <br>
+ <nav>
+    <div class="nav-wrapper teal darken-3">
+      <div class="col s12">
+        <a href="acessoliberado.jsp" class="breadcrumb">Inicío</a>
+        <a href="#" class="breadcrumb">Cadastrar Usuario</a>       
+      </div>
+    </div>
+  </nav>
+ 
 <br>
 	<div class="form-group">
 	<!-- <form action="salvarUsuario?acao=exportar"> -->
@@ -22,7 +33,7 @@
 
 <h3>${msg}</h3>
 
-<form action="salvarUsuario" method="post" id="formUser">
+<form action="salvarUsuario" method="post" id="formUser" onsubmit="return validarCampos() ? true : false;">
 
 			Código:			
 			<input type="text" readonly="readonly" id="id" name="id" value="${user.id}" />
@@ -78,5 +89,28 @@
       </table>
 
 </div>
+
+<script type="text/javascript">
+	function validarCampos(){
+		if(document.getElementById("nome").value == '' ){
+			alert('Informe o nome!');
+			return false;
+		}
+		else if(document.getElementById("login").value == '' ){
+			alert('Informe o login!');
+			return false;
+		}
+		else if(document.getElementById("senha").value == '' ){
+			alert('Informe a senha!');
+			return false;
+		}
+		else if(document.getElementById("telefone").value == '' ){
+			alert('Informe o telefone!');
+			return false;
+		}
+		
+		return true;
+	}
+</script>
 </body>
 </html>

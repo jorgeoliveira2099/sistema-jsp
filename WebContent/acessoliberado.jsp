@@ -11,7 +11,7 @@
 <div class="container">
 <h1>Bem vindo</h1>
 
-<a href="salvarUsuario?acao=listartodos"><i class="material-icons person_add">person_add</i>Cadastrar Funcionario</a>
+<a href="salvarUsuario?acao=listartodos"><i class="small material-icons person_add">person_add</i>Cadastrar Funcionario</a>
 
 <a href="salvarProduto?acao=listartodos"><i class="material-icons person_add">person_add</i>Cadastrar Produto</a>
 
