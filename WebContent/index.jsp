@@ -23,7 +23,9 @@
 	<input type="text" id="senha" name="senha" placeholder="Senha">
 	
 	
-	<a class="waves-effect waves-light btn"><input type="submit"  value="Entrar"/></a>
+	<a class="waves-effect waves-light btn"><input type="submit"  value="Entrar"/></a>	
+	
+	<a href="cadastro.jsp" class="waves-effect waves-light btn" value="Cadastro" >Cadastro</a>
 	
 </form>
 

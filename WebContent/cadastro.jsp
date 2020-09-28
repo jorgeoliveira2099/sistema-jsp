@@ -6,30 +6,32 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Cadastro de Funcionario</title>
+
+ <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+ <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
 </head>
 <body>
-<%@ include file="header.jsp"  %>
+
 
  <div class="container">
  <br>
- <nav>
-    <div class="nav-wrapper teal darken-3">
-      <div class="col s12">
-        <a href="acessoliberado.jsp" class="breadcrumb">Inicío</a>
-        <a href="#" class="breadcrumb">Cadastrar Usuario</a>       
-      </div>
-    </div>
-  </nav>
+
  
 <br>
-	<div class="form-group">
-	<!-- <form action="salvarUsuario?acao=exportar"> -->
-		<form action="#">
-			<button type="submit" name="accion" value="ExportarPdf" class="btn btn-small"><i class="material-icons file_download">file_download</i>Gerar PDF</button>
-		</form>
-	</div>
-	
-<h1>Novo Funcionario</h1>
+
+<h1>Criar login</h1>
 
 <h3>${msg}</h3>
 
@@ -69,71 +71,26 @@
 		
 		<a class="waves-effect waves-light btn"><input type="submit" value="Salvar" /></a>
 		<a class="waves-effect waves-light btn"><input type="submit" value="Cancelar" onclick="document.getElementById('formUser').action='salvarUsuario?acao=reset'" /></a>
-		
+		<a href="index.jsp" class="waves-effect waves-light btn"><input type="submit" value="Voltar" /></a>
 </form>
-	
-	
-	<table>
-        <thead>
-          <tr>
-         	 <th>id</th>
-         	 <th>Login</th>
-         	 <th>Nome</th>
-         	 <th>Telefone</th>
-             <th>Cep</th>  
-             <th>Rua</th> 
-             <th>Bairro</th> 
-             <th>Cidade</th>             
-             <th>Ação</th>   
-             <th>Fones</th>              
-          </tr>
-        </thead>
-
-        <tbody>
-        
-        <c:forEach items="${usuarios}" var="user">
-          <tr>
-           	<td><c:out value="${user.id}"></c:out> </td>
-           	<td><c:out value="${user.login}"></c:out> </td>
-           	<td><c:out value="${user.nome}"></c:out> </td>
-           	<td><c:out value="${user.telefone}"></c:out> </td>
-           	<td><c:out value="${user.cep}"></c:out> </td>	
-           	<td><c:out value="${user.rua}"></c:out> </td>
-           	<td><c:out value="${user.bairro}"></c:out> </td>
-           	<td><c:out value="${user.cidade}"></c:out> </td>				
-			<td><a href="salvarUsuario?acao=delete&user=${user.id}"><i class="material-icons delete">delete</i></a>
-			<a href="salvarUsuario?acao=editar&user=${user.id}"><i class="material-icons edit">edit</i></a>
-					</td>
-					
-					<td><a href="salvarTelefones?user=${user.id}"><i class="material-icons contact_phone">contact_phone</i></a>
-	
-					</td>
-          
-          </tr>
-          </c:forEach>
-          
-          <tr>         
-        </tbody>
-      </table>
-
-</div>
-
+	</div>
+<br>
 <script type="text/javascript">
 	function validarCampos(){
 		if(document.getElementById("nome").value == '' ){
-			alert('Informe o nome!');
+			
 			return false;
 		}
 		else if(document.getElementById("login").value == '' ){
-			alert('Informe o login!');
+			
 			return false;
 		}
 		else if(document.getElementById("senha").value == '' ){
-			alert('Informe a senha!');
+			
 			return false;
 		}
 		else if(document.getElementById("telefone").value == '' ){
-			alert('Informe o telefone!');
+			
 			return false;
 		}
 		

@@ -22,13 +22,19 @@ public class DaoUsuario {
 	public void salvar(BeanCursoJsp usuario){
 		
 		try {
-		String sql = "INSERT INTO usuario(login, senha, nome, telefone) values (?, ?, ?, ?)";
+		String sql = "INSERT INTO usuario(login, senha, nome, telefone, cep, rua, bairro, cidade, estado) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement insert = connection.prepareStatement(sql);
 		
 		insert.setString(1, usuario.getLogin());
 		insert.setString(2, usuario.getSenha());
 		insert.setString(3, usuario.getNome());
 		insert.setString(4, usuario.getTelefone());
+		
+		insert.setString(5, usuario.getCep());
+		insert.setString(6, usuario.getRua());
+		insert.setString(7, usuario.getBairro());
+		insert.setString(8, usuario.getCidade());
+		insert.setString(9, usuario.getEstado());
 		
 		insert.execute();
 		connection.commit();
@@ -61,6 +67,12 @@ public class DaoUsuario {
 			beanCursoJsp.setLogin(resultset.getString("login"));
 			beanCursoJsp.setSenha(resultset.getString("senha"));
 			beanCursoJsp.setTelefone(resultset.getString("telefone"));
+			
+			beanCursoJsp.setCep(resultset.getString("cep"));
+			beanCursoJsp.setRua(resultset.getString("rua"));
+			beanCursoJsp.setBairro(resultset.getString("bairro"));
+			beanCursoJsp.setCidade(resultset.getString("cidade"));
+			beanCursoJsp.setEstado(resultset.getString("estado"));
 			
 			lista.add(beanCursoJsp);
 		}		
@@ -101,6 +113,12 @@ public class DaoUsuario {
 				beanCursoJsp.setLogin(resultSet.getString("login"));
 				beanCursoJsp.setSenha(resultSet.getString("senha"));
 				beanCursoJsp.setTelefone(resultSet.getString("telefone"));
+				
+				beanCursoJsp.setCep(resultSet.getString("cep"));
+				beanCursoJsp.setRua(resultSet.getString("rua"));
+				beanCursoJsp.setBairro(resultSet.getString("bairro"));
+				beanCursoJsp.setCidade(resultSet.getString("cidade"));
+				beanCursoJsp.setEstado(resultSet.getString("estado"));
 				
 				return beanCursoJsp;
 			}				
@@ -156,13 +174,19 @@ return false;
 
 	public void atualizar(BeanCursoJsp usuario) {
 		try {
-			String sql = "UPDATE usuario set login = ?, senha = ?, nome = ?, telefone = ? WHERE id ='" + usuario.getId() +"'";
+			String sql = "UPDATE usuario set login = ?, senha = ?, nome = ?, telefone = ?, cep = ?, rua = ?, bairro = ?, cidade = ?, estado = ? WHERE id ='" + usuario.getId() +"'";
 			PreparedStatement atualizar = connection.prepareStatement(sql);
 			
 			atualizar.setString(1, usuario.getLogin());
 			atualizar.setString(2, usuario.getSenha());
 			atualizar.setString(3, usuario.getNome());
 			atualizar.setString(4, usuario.getTelefone());
+			
+			atualizar.setString(5, usuario.getCep());
+			atualizar.setString(6, usuario.getRua());
+			atualizar.setString(7, usuario.getBairro());
+			atualizar.setString(8, usuario.getCidade());
+			atualizar.setString(9, usuario.getEstado());
 			
 			atualizar.executeUpdate();
 			connection.commit();
