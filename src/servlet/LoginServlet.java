@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.BeanCursoJsp;
 import dao.DaoLogin;
 
 
@@ -36,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 		
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
-			
+			System.out.println("clicou em entrar");
 		
 			if(daoLogin.validarLogin(login, senha)) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("acessoliberado.jsp");

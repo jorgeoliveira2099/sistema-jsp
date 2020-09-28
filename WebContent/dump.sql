@@ -25,3 +25,12 @@ ALTER TABLE usuario  add COLUMN cidade VARCHAR(255);
 ALTER TABLE usuario  add COLUMN estado VARCHAR(3);
 
 
+CREATE TABLE telefone(
+	id bigint(11) NOT NULL AUTO INCREMENT PRIMARY KEY,
+	numero varchar(15) not null,
+	tipo varchar(255) not null,
+	usuario bigint not null,
+	
+);
+
+

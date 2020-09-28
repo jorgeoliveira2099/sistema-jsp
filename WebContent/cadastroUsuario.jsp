@@ -105,7 +105,7 @@
 			<a href="salvarUsuario?acao=editar&user=${user.id}"><i class="material-icons edit">edit</i></a>
 					</td>
 					
-					<td><a href="salvarTelefones?user=${user.id}"><i class="material-icons contact_phone">contact_phone</i></a>
+					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><i class="material-icons contact_phone">contact_phone</i></a>
 	
 					</td>
           

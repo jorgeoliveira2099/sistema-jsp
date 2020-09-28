@@ -31,7 +31,7 @@
 <form action="salvarTelefones" method="post" id="formUser" onsubmit="return validarCampos() ? true : false;">
 
 			User:
-			<input type="text" id="user" name="user" value="${usua.id}">
+			<input type="text" id="user" readonly="readonly" name="user" value="${usua.id}">
      		Nome:
 			<input type="text" id="nome" name="nome" value="${usua.nome}">
 			
@@ -77,7 +77,7 @@
            	<td><c:out value="${fone.tipo}"></c:out> </td>
            
           				
-			<td><a href="salvarTelefone?acao=delete&user=${fone.id}"><i class="material-icons delete">delete</i></a>
+			<td><a href="salvarTelefones?acao=deleteFone&foneId=${fone.id}"><i class="material-icons delete">delete</i></a>
 			
 					</td>
 					

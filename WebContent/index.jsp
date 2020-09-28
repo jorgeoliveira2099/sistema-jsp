@@ -25,7 +25,7 @@
 	
 	<a class="waves-effect waves-light btn"><input type="submit"  value="Entrar"/></a>	
 	
-	<a href="cadastro.jsp" class="waves-effect waves-light btn" value="Cadastro" >Cadastro</a>
+	<a href="cadastro.jsp" class="waves-effect waves-light btn">Cadastro</a>
 	
 </form>
 
