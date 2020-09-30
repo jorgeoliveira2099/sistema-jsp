@@ -1,23 +1,39 @@
 package servlet;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
 //import java.text.DateFormat;
 //import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.omg.CORBA.portable.InputStream;
+
+
 import beans.BeanCursoJsp;
 import dao.DaoUsuario;
 
+import javax.servlet.http.Part;
+import javax.xml.bind.DatatypeConverter;
+
+@MultipartConfig
 @WebServlet("/salvarUsuario")
 public class Usuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	private DaoUsuario daoUsuario = new DaoUsuario();
 
 	public Usuario() {
@@ -66,11 +82,27 @@ System.out.println(user);
 
 	}
 
+	//converter a entrada de fluxo de dados da imagem para array de dados
+	private byte[] converteStremParaByte(java.io.InputStream inputStream) throws Exception{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		int reads = inputStream.read();
+		
+		while(reads != -1) {
+			baos.write(reads);
+			reads = inputStream.read();
+		}
+		
+		return baos.toByteArray();
+	}
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+	
 
-		String acao = request.getParameter("acao");
-
+		String acao = request.getParameter("acao");			
+			
 		if (acao != null && acao.equalsIgnoreCase("reset")) {
 			try {
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
@@ -81,6 +113,10 @@ System.out.println(user);
 				e.printStackTrace();
 			}
 		} else {
+			
+			
+			
+		
 
 			String id = request.getParameter("id");
 			String login = request.getParameter("login");
@@ -106,6 +142,21 @@ System.out.println(user);
 			usuario.setBairro(bairro);
 			usuario.setCidade(cidade);
 			usuario.setEstado(estado);
+			
+			try {
+				/* INICIO file upload de imagens e pdf*/
+				
+				if(ServletFileUpload.isMultipartContent(request)) {
+					Part imagemFoto = request.getPart("foto");
+					
+				String fotoBase64 = new Base64().encodeBase64String(converteStremParaByte(imagemFoto.getInputStream()));
+					
+				usuario.setFotoBase64(fotoBase64);
+				usuario.setContentType(imagemFoto.getContentType());
+					
+					
+				}
+				//fim do file upload
 			
 			
 				if(nome == null || nome.isEmpty()) {
@@ -159,9 +210,7 @@ System.out.println(user);
 				}
 				view.forward(request, response);
 				
-			}else {
-				
-			try {
+			}else {					
 				
 				//se o validar retornar false, o usuario ja existe
 				if (id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {
@@ -199,14 +248,20 @@ System.out.println(user);
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 
-			} catch (Exception e) {
+			
+		}
+			//isso é daquele try da linha 105 mais ou menos	
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
 		
 		//fechamento do else da linha 101
 		}
 		
+		
+		
 	}
+	
+
 
 }

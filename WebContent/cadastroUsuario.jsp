@@ -33,8 +33,8 @@
 
 <h3>${msg}</h3>
 
-<form action="salvarUsuario" method="post" id="formUser" onsubmit="return validarCampos() ? true : false;">
-
+<form action="salvarUsuario" method="post" id="formUser" onsubmit="return validarCampos() ? true : false;" enctype="multipart/form-data" >
+<!-- enctype="multipart/form-data" -->
 			Código:			
 			<input type="text" readonly="readonly" id="id" name="id" value="${user.id}" />
 			
@@ -64,7 +64,10 @@
         
        		 Estado:
        		 <input name="estado" type="text" id="estado" value="${user.estado}" />
-        
+       		 
+       		 Foto:
+       		 <input name="foto" type="file" id="foto" />
+        <br> <br>
      
 		
 		<a class="waves-effect waves-light btn"><input type="submit" value="Salvar" /></a>

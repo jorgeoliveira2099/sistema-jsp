@@ -22,7 +22,7 @@ public class DaoUsuario {
 	public void salvar(BeanCursoJsp usuario){
 		
 		try {
-		String sql = "INSERT INTO usuario(login, senha, nome, telefone, cep, rua, bairro, cidade, estado) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO usuario(login, senha, nome, telefone, cep, rua, bairro, cidade, estado, fotobase64, contenttype) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement insert = connection.prepareStatement(sql);
 		
 		insert.setString(1, usuario.getLogin());
@@ -35,6 +35,9 @@ public class DaoUsuario {
 		insert.setString(7, usuario.getBairro());
 		insert.setString(8, usuario.getCidade());
 		insert.setString(9, usuario.getEstado());
+		
+		insert.setString(10, usuario.getFotoBase64());
+		insert.setString(11, usuario.getContentType());
 		
 		insert.execute();
 		connection.commit();
