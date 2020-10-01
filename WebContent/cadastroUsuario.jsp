@@ -79,16 +79,12 @@
 	<table>
         <thead>
           <tr>
-         	 <th>id</th>
-         	 <th>Login</th>
-         	 <th>Nome</th>
-         	 <th>Telefone</th>
-             <th>Cep</th>  
-             <th>Rua</th> 
-             <th>Bairro</th> 
-             <th>Cidade</th>             
-             <th>Ação</th>   
-             <th>Fones</th>              
+         	 <th>id</th>         	 
+         	 <th>Foto</th>
+         	 <th>Nome</th>         	
+             <th>Delete</th>
+             <th>Update</th> 
+             <th>Telefones</th>       
           </tr>
         </thead>
 
@@ -96,21 +92,15 @@
         
         <c:forEach items="${usuarios}" var="user">
           <tr>
-           	<td><c:out value="${user.id}"></c:out> </td>
-           	<td><c:out value="${user.login}"></c:out> </td>
-           	<td><c:out value="${user.nome}"></c:out> </td>
-           	<td><c:out value="${user.telefone}"></c:out> </td>
-           	<td><c:out value="${user.cep}"></c:out> </td>	
-           	<td><c:out value="${user.rua}"></c:out> </td>
-           	<td><c:out value="${user.bairro}"></c:out> </td>
-           	<td><c:out value="${user.cidade}"></c:out> </td>				
-			<td><a href="salvarUsuario?acao=delete&user=${user.id}"><i class="material-icons delete">delete</i></a>
-			<a href="salvarUsuario?acao=editar&user=${user.id}"><i class="material-icons edit">edit</i></a>
-					</td>
+           	<td><c:out value="${user.id}"></c:out> </td>           	
+           	<td><a href="salvarUsuario?acao=download&user=${user.id}"><img src='<c:out value="${user.tempFotoUser}"></c:out>' width="32px" height="32px" /></a></td>
+           	<td><c:out value="${user.nome}"></c:out> </td>            			
+			<td><a href="salvarUsuario?acao=delete&user=${user.id}"><i class="material-icons delete">delete</i></a>	</td>
 					
-					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><i class="material-icons contact_phone">contact_phone</i></a>
-	
-					</td>
+			<td><a href="salvarUsuario?acao=editar&user=${user.id}"><i class="material-icons edit">edit</i></a>	</td>
+					
+			<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><i class="material-icons contact_phone">contact_phone</i></a>
+			</td>
           
           </tr>
           </c:forEach>

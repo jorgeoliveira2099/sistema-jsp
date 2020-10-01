@@ -3,7 +3,7 @@ package servlet;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
+import java.io.OutputStream;
 //import java.text.DateFormat;
 //import java.text.SimpleDateFormat;
 import java.util.List;
@@ -42,7 +42,7 @@ public class Usuario extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 
 		try {
 			String acao = request.getParameter("acao");
@@ -69,6 +69,33 @@ System.out.println(user);
 
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
+			}else if (acao.equalsIgnoreCase("download")) {
+				BeanCursoJsp usuario = daoUsuario.consultar(user);
+				if(usuario != null) {
+					response.setHeader("Content-Disposition", "attachment;filename=arquivo." + usuario.getContentType().split("\\/")[1]);
+					
+					/*converte a base 64 do banco para byte[] */
+					byte[] imageFotoBytes = new Base64().decodeBase64(usuario.getFotoBase64());
+					
+					//coloca os bytes em um objetp de entrada para processar
+					ByteArrayInputStream is = new ByteArrayInputStream(imageFotoBytes);
+				/* inicio da resposta para o navegador */
+					int read = 0;
+					byte[] bytes = new byte[1024];
+					try {
+					OutputStream os = response.getOutputStream();
+					
+					while((read = is.read(bytes)) != -1) {
+						os.write(bytes, 0, read);
+					}
+					
+					os.flush();
+					os.close();
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				}
+			
 			}
 			//parte do metodo para gerar relatorio
 			//else if(acao.equalsIgnoreCase("exportar")) {

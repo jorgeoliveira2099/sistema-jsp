@@ -77,6 +77,10 @@ public class DaoUsuario {
 			beanCursoJsp.setCidade(resultset.getString("cidade"));
 			beanCursoJsp.setEstado(resultset.getString("estado"));
 			
+			
+			 
+			beanCursoJsp.setFotoBase64(resultset.getString("fotobase64"));
+			beanCursoJsp.setContentType(resultset.getString("contenttype"));
 			lista.add(beanCursoJsp);
 		}		
 		return lista;		
@@ -122,6 +126,9 @@ public class DaoUsuario {
 				beanCursoJsp.setBairro(resultSet.getString("bairro"));
 				beanCursoJsp.setCidade(resultSet.getString("cidade"));
 				beanCursoJsp.setEstado(resultSet.getString("estado"));
+				
+				beanCursoJsp.setFotoBase64(resultSet.getString("fotobase64"));
+				beanCursoJsp.setContentType(resultSet.getString("contenttype"));
 				
 				return beanCursoJsp;
 			}				
