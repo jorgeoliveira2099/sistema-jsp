@@ -197,19 +197,26 @@ return false;
 
 	public void atualizar(BeanCursoJsp usuario) {
 		try {
-			String sql = "UPDATE usuario set login = ?, senha = ?, nome = ?, telefone = ?, cep = ?, rua = ?, bairro = ?, cidade = ?, estado = ? WHERE id ='" + usuario.getId() +"'";
+			String sql = "UPDATE usuario set login = ?, senha = ?, nome = ?, telefone = " 
+		+ " ?, cep = ?, rua = ?, bairro = ?, cidade = ?, estado = ?, fotobase64 = " 
+		+ " ?, contenttype = ?, curriculobase64 = ?, contenttypecurriculo = ?  WHERE id ='" + usuario.getId() +"'";
+			
 			PreparedStatement atualizar = connection.prepareStatement(sql);
 			
 			atualizar.setString(1, usuario.getLogin());
 			atualizar.setString(2, usuario.getSenha());
 			atualizar.setString(3, usuario.getNome());
-			atualizar.setString(4, usuario.getTelefone());
-			
+			atualizar.setString(4, usuario.getTelefone());			
 			atualizar.setString(5, usuario.getCep());
 			atualizar.setString(6, usuario.getRua());
 			atualizar.setString(7, usuario.getBairro());
 			atualizar.setString(8, usuario.getCidade());
 			atualizar.setString(9, usuario.getEstado());
+			
+			atualizar.setString(10, usuario.getFotoBase64());
+			atualizar.setString(11, usuario.getContentType());
+			atualizar.setString(12, usuario.getCurriculoBase64());
+			atualizar.setString(13, usuario.getContentTypeCurriculo());
 			
 			atualizar.executeUpdate();
 			connection.commit();

@@ -66,8 +66,10 @@
        		 <input name="estado" type="text" id="estado" value="${user.estado}" />
        		 
        		 Foto:
-       		 <input name="foto" type="file" id="foto" />
+       		 <input name="foto" type="file" />
        		 
+       		  <input name="fotoTemp" style="display:none;" readonly="readonly" type="text" id="fotoTemp" value="${user.fotoBase64}" />
+       		   <input name="contentTypeFotoTemp" style="display:none;" readonly="readonly" type="text" id="contentTypeFotoTemp" value="${user.contentType}" />
        		  Curriculo:
        		 <input name="curriculo" type="file" id="curriculo" />
         <br> <br>

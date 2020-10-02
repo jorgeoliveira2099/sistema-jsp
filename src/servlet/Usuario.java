@@ -191,11 +191,15 @@ System.out.println(user);
 					Part imagemFoto = request.getPart("foto");
 					
 					//só pode processar, se existir uma imagem, se o usuario não passar imagem, pode dar nullpointexception
-				if(imagemFoto != null) {		
+				if(imagemFoto != null && imagemFoto.getInputStream().available() > 0) {		
 					String fotoBase64 = new Base64().encodeBase64String(converteStremParaByte(imagemFoto.getInputStream()));
 					usuario.setFotoBase64(fotoBase64);
 					usuario.setContentType(imagemFoto.getContentType());
 					
+					}else {
+						
+						usuario.setFotoBase64(request.getParameter("fotoTemp"));
+						usuario.setContentType(request.getParameter("contentTypeFotoTemp"));
 					}
 				
 				Part curriculopdf = request.getPart("curriculo");
