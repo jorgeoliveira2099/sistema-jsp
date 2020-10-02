@@ -72,13 +72,27 @@ System.out.println(user);
 			}else if (acao.equalsIgnoreCase("download")) {
 				BeanCursoJsp usuario = daoUsuario.consultar(user);
 				if(usuario != null) {
-					response.setHeader("Content-Disposition", "attachment;filename=arquivo." + usuario.getContentType().split("\\/")[1]);
 					
-					/*converte a base 64 do banco para byte[] */
-					byte[] imageFotoBytes = new Base64().decodeBase64(usuario.getFotoBase64());
+					String ContentType = "";
+					byte[] fileBytes = null;
+					
+					String tipo = request.getParameter("tipo");
+					
+					if(tipo.equalsIgnoreCase("image")) {
+						
+						ContentType = usuario.getContentType();
+						 fileBytes = new Base64().decodeBase64(usuario.getFotoBase64());
+						 
+					}else if(tipo.equalsIgnoreCase("curriculo")) {
+						ContentType = usuario.getContentTypeCurriculo();
+						 fileBytes = new Base64().decodeBase64(usuario.getCurriculoBase64());
+					}
+					
+					response.setHeader("Content-Disposition", "attachment;filename=arquivo." + ContentType.split("\\/")[1]);
+					
 					
 					//coloca os bytes em um objetp de entrada para processar
-					ByteArrayInputStream is = new ByteArrayInputStream(imageFotoBytes);
+					ByteArrayInputStream is = new ByteArrayInputStream(fileBytes);
 				/* inicio da resposta para o navegador */
 					int read = 0;
 					byte[] bytes = new byte[1024];
@@ -176,12 +190,24 @@ System.out.println(user);
 				if(ServletFileUpload.isMultipartContent(request)) {
 					Part imagemFoto = request.getPart("foto");
 					
-				String fotoBase64 = new Base64().encodeBase64String(converteStremParaByte(imagemFoto.getInputStream()));
+					//só pode processar, se existir uma imagem, se o usuario não passar imagem, pode dar nullpointexception
+				if(imagemFoto != null) {		
+					String fotoBase64 = new Base64().encodeBase64String(converteStremParaByte(imagemFoto.getInputStream()));
+					usuario.setFotoBase64(fotoBase64);
+					usuario.setContentType(imagemFoto.getContentType());
 					
-				usuario.setFotoBase64(fotoBase64);
-				usuario.setContentType(imagemFoto.getContentType());
+					}
+				
+				Part curriculopdf = request.getPart("curriculo");
+				
+				if(curriculopdf != null) {		
+					String curriculoBase64 = new Base64().encodeBase64String(converteStremParaByte(curriculopdf.getInputStream()));
+					usuario.setCurriculoBase64(curriculoBase64);
+					usuario.setContentTypeCurriculo(curriculopdf.getContentType());
 					
-					
+					}
+				
+				
 				}
 				//fim do file upload
 			

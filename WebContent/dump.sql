@@ -32,5 +32,13 @@ CREATE TABLE telefone(
 	usuario bigint not null,
 	
 );
+ALTER TABLE usuario ADD COLUMN fotobase64 longblob
+
+ALTER TABLE usuario ADD COLUMN contenttype VARCHAR(255)
+
+
+ALTER TABLE usuario ADD COLUMN curriculobase64 longblob
+
+ALTER TABLE usuario ADD COLUMN contenttypecurriculo VARCHAR(255)
 
 

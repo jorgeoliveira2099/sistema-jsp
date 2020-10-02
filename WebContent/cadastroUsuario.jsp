@@ -67,6 +67,9 @@
        		 
        		 Foto:
        		 <input name="foto" type="file" id="foto" />
+       		 
+       		  Curriculo:
+       		 <input name="curriculo" type="file" id="curriculo" />
         <br> <br>
      
 		
@@ -80,7 +83,8 @@
         <thead>
           <tr>
          	 <th>id</th>         	 
-         	 <th>Foto</th>
+         	 <th>Foto</th>         	 
+         	 <th>Curriculo</th>
          	 <th>Nome</th>         	
              <th>Delete</th>
              <th>Update</th> 
@@ -93,7 +97,8 @@
         <c:forEach items="${usuarios}" var="user">
           <tr>
            	<td><c:out value="${user.id}"></c:out> </td>           	
-           	<td><a href="salvarUsuario?acao=download&user=${user.id}"><img src='<c:out value="${user.tempFotoUser}"></c:out>' width="32px" height="32px" /></a></td>
+           	<td><a href="salvarUsuario?acao=download&tipo=image&user=${user.id}"><img src='<c:out value="${user.tempFotoUser}"></c:out>' width="32px" height="32px" /></a></td>
+           	<td><a href="salvarUsuario?acao=download&tipo=curriculo&user=${user.id}"> <i class="medium material-icons picture_as_pdf">picture_as_pdf</i></a></td>
            	<td><c:out value="${user.nome}"></c:out> </td>            			
 			<td><a href="salvarUsuario?acao=delete&user=${user.id}"><i class="material-icons delete">delete</i></a>	</td>
 					
@@ -101,6 +106,7 @@
 					
 			<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><i class="material-icons contact_phone">contact_phone</i></a>
 			</td>
+			
           
           </tr>
           </c:forEach>

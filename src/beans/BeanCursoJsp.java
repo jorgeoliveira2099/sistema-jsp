@@ -2,44 +2,51 @@ package beans;
 
 public class BeanCursoJsp {
 
-	private Long id;
+	private Long id;	
+	private String login;	
+	private String senha;	
+	private String nome;	
+	private String telefone;	
+	private String cep;	
+	private String rua;	
+	private String bairro;	
+	private String cidade;	
+	private String estado;	
+	private String fotoBase64;	
+	private String curriculoBase64;	
+	private String contentType;	
+	private String contentTypeCurriculo;
 	
-	private String login;
+	private String tempFotoUser;	
 	
-	private String senha;
-	
-	private String nome;
-	
-	private String telefone;
-	
-	private String cep;
-	
-	private String rua;
-	
-	private String bairro;
-	
-	private String cidade;
-	
-	private String estado;
-	
-	private String fotoBase64;
-	
-	private String contentType;
-	
-	
-	private String tempFotoUser;
-	
+		
 	public String getTempFotoUser() {
 		
 		tempFotoUser = "data:" + contentType + ";base64," + fotoBase64;
 		
 		return tempFotoUser;
+	}		
+	
+	
+	public String getCurriculoBase64() {
+		return curriculoBase64;
 	}
-	
-	
-	
-	
-	
+
+	public void setCurriculoBase64(String curriculoBase64) {
+		this.curriculoBase64 = curriculoBase64;
+	}
+
+
+	public String getContentTypeCurriculo() {
+		return contentTypeCurriculo;
+	}
+
+
+	public void setContentTypeCurriculo(String contentTypeCurriculo) {
+		this.contentTypeCurriculo = contentTypeCurriculo;
+	}
+
+
 	public String getFotoBase64() {
 		return fotoBase64;
 	}
