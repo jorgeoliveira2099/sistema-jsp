@@ -68,10 +68,15 @@
        		 Foto:
        		 <input name="foto" type="file" />
        		 
-       		  <input name="fotoTemp" style="display:none;" readonly="readonly" type="text" id="fotoTemp" value="${user.fotoBase64}" />
-       		   <input name="contentTypeFotoTemp" style="display:none;" readonly="readonly" type="text" id="contentTypeFotoTemp" value="${user.contentType}" />
+       		 <input name="fotoTemp" style="display:none;" readonly="readonly" type="text" id="fotoTemp" value="${user.fotoBase64}" />
+       		 <input name="contentTypeFotoTemp" style="display:none;" readonly="readonly" type="text" id="contentTypeFotoTemp" value="${user.contentType}" />
+       		 
        		  Curriculo:
-       		 <input name="curriculo" type="file" id="curriculo" />
+       		 <input name="curriculo" type="file" />
+       		 
+       		 <input name="curriculoTemp" style="display:none;" readonly="readonly" type="text" id="curriculoTemp" value="${user.curriculoBase64}" />
+       		 <input name="contentTypeCurriculoTemp" style="display:none;" readonly="readonly" type="text" id="contentTypeCurriculoTemp" value="${user.contentTypeCurriculo}" />
+       		   
         <br> <br>
      
 		

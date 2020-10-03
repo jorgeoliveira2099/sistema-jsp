@@ -204,12 +204,17 @@ System.out.println(user);
 				
 				Part curriculopdf = request.getPart("curriculo");
 				
-				if(curriculopdf != null) {		
+				if(curriculopdf != null && curriculopdf.getInputStream().available() > 0) {		
 					String curriculoBase64 = new Base64().encodeBase64String(converteStremParaByte(curriculopdf.getInputStream()));
 					usuario.setCurriculoBase64(curriculoBase64);
 					usuario.setContentTypeCurriculo(curriculopdf.getContentType());
 					
+					}else {
+						
+						usuario.setCurriculoBase64(request.getParameter("curriculoTemp"));
+						usuario.setContentTypeCurriculo(request.getParameter("contentTypeCurriculoTemp"));
 					}
+				
 				
 				
 				}
